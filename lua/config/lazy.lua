@@ -25,8 +25,11 @@ require('lazy').setup({
 })
 
 vim.opt.termguicolors = true
-vim.opt.signcolumn = "number"
 vim.cmd.colorscheme('tokyonight')
+
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.opt.signcolumn = 'yes'
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
@@ -57,42 +60,40 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-	require('mason').setup({})
-	require('mason-lspconfig').setup({
-	  -- Replace the language servers listed here
-	  -- with the ones you want to install
-	  ensure_installed = {'lua_ls', 'gopls', 'omnisharp'},
-	  handlers = {
-	    function(server_name)
-	      require('lspconfig')[server_name].setup({})
-	    end,
-	  }
-	})
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  -- Replace the language servers listed here
+  -- with the ones you want to install
+ensure_installed = {'lua_ls', 'gopls', 'omnisharp'},
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+  }
+})
 
 
-	local cmp = require('cmp')
+local cmp = require('cmp')
 
-	cmp.setup({
-	  sources = {
-	    {name = 'nvim_lsp'},
-	  },
-	  mapping = cmp.mapping.preset.insert({
-	    -- Navigate between completion items
-	    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-	    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- Navigate between completion items
+    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+    -- `Enter` key to confirm completion
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    -- Ctrl+Space to trigger completion menu
+    ['<C-Space>'] = cmp.mapping.complete(),
 
-	    -- `Enter` key to confirm completion
-	    ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-	    -- Ctrl+Space to trigger completion menu
-	    ['<C-Space>'] = cmp.mapping.complete(),
-
-    -- Scroll up and down in the completion documentation
+   -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  }),
-  snippet = {
-    expand = function(args)
+}),
+snippet = {
+   expand = function(args)
       vim.snippet.expand(args.body)
     end,
   },
