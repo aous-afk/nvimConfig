@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {'folke/tokyonight.nvim'},
+  {"scottmckendry/cyberdream.nvim"},
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
   {'neovim/nvim-lspconfig'},
@@ -33,7 +34,7 @@ require('lazy').setup({
 })
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme('tokyonight')
+vim.cmd.colorscheme('cyberdream')
 
 vim.wo.number = true
 vim.wo.relativenumber = true
