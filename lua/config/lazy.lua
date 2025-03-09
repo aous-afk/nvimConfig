@@ -16,21 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    {'folke/tokyonight.nvim'},
-    {"scottmckendry/cyberdream.nvim"},
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
-    {"nvim-treesitter/nvim-treesitter"} ,
-    {"nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-	"nvim-tree/nvim-web-devicons",
-    },
-}
+spec = "config.plugins"
 })
 
 vim.opt.termguicolors = true
