@@ -1,5 +1,1 @@
 require("config.lazy")
-require("config.keymaps")
-require("config.plugins.treesitter")
-require("config.plugins.cmp")
-require("config.plugins.lsp_config")
