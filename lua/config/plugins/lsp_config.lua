@@ -29,7 +29,7 @@ return{
 	require('mason-lspconfig').setup({
 	    -- Replace the language servers listed here
 	    -- with the ones you want to install
-	    ensure_installed = {'lua_ls', 'gopls', 'omnisharp', 'ts_ls', 'eslint', 'angularls','superhtml'},
+	    ensure_installed = {'lua_ls', 'gopls', 'csharp_ls','omnisharp', 'ts_ls', 'eslint', 'angularls','superhtml'},
 	    handlers = {
 		function(server_name)
 		    require('lspconfig')[server_name].setup({})
@@ -71,16 +71,26 @@ return{
 	})
 
 	require("fidget").setup({})
+
+	local luasnip = require('luasnip')
+	require('luasnip.loaders.from_vscode').lazy_load()
+	luasnip.config.setup {}
+
+
 	local cmp = require('cmp')
 
 	cmp.setup({
-	    sources = {
-		{name = 'nvim_lsp'},
+
+	    snippet = {
+		expand = function(args)
+		    vim.snippet.expand(args.body)
+		end,
 	    },
+
 	    mapping = cmp.mapping.preset.insert({
 		-- Navigate between completion items
-		['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-		['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+		['<C-k>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+		['<C-j>'] = cmp.mapping.select_next_item({behavior = 'select'}),
 		-- `Enter` key to confirm completion
 		['<CR>'] = cmp.mapping.confirm({select = false}),
 		-- Ctrl+Space to trigger completion menu
@@ -89,12 +99,29 @@ return{
 		-- Scroll up and down in the completion documentation
 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
 		['<C-d>'] = cmp.mapping.scroll_docs(4),
+		['<Tab>'] = cmp.mapping(function(fallback)
+		    if cmp.visible() then
+			cmp.select_next_item()
+		    elseif luasnip.expand_or_jumpable() then
+			luasnip.expand_or_jump()
+		    else
+			fallback()
+		    end
+		end, { 'i', 's' }),
+		['<S-Tab>'] = cmp.mapping(function(fallback)
+		    if cmp.visible() then
+			cmp.select_prev_item()
+		    elseif luasnip.jumpable(-1) then
+			luasnip.jump(-1)
+		    else
+			fallback()
+		    end
+		end, { 'i', 's' }),
 	    }),
-	    snippet = {
-		expand = function(args)
-		    vim.snippet.expand(args.body)
-		end,
-	    },
+	    sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+	    }),
 	})
 	vim.diagnostic.config({
 	    -- update_in_insert = true,
