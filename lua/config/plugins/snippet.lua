@@ -85,8 +85,8 @@ return {
 		    t('"')
 		})
 	    })
-	    
-	    ls.add_snippets("all", {
+
+	    ls.add_snippets("gitcommit", {
 		s("cm",
 		    fmt([[ [{}] {} ]],{
 			c(1, {
