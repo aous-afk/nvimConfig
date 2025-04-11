@@ -36,6 +36,12 @@ return{
 		end,
 	    }
 	})
+	vim.diagnostic.config({
+	  virtual_lines = {
+	   -- Only show virtual line diagnostics for the current cursor line
+	   current_line = true,
+	  },
+	})
 
 	-- Add cmp_nvim_lsp capabilities settings to lspconfig
 	-- This should be executed before you configure any language server
