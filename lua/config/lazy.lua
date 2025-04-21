@@ -27,19 +27,3 @@ vim.wo.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 4
-
-require("nvim-tree").setup({
-    sort = {
-	sorter = "case_sensitive",
-    },
-    view = {
-	width = 30,
-    },
-    renderer = {
-	group_empty = true,
-    },
-    filters = {
-	dotfiles = true,
-    },
-})
-
