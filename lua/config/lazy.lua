@@ -18,12 +18,3 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 spec = "config.plugins"
 })
-
-vim.opt.termguicolors = true
-vim.cmd.colorscheme('cyberdream')
-
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.opt.signcolumn = 'yes'
-vim.opt.clipboard = "unnamedplus"
-vim.opt.shiftwidth = 4
