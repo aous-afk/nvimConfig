@@ -49,5 +49,6 @@ return {
 		vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 		-- to resume the last search
 		-- vim.keymap.set('n', '<leader>fr', builtin.resume, {})
+		require("telescope").load_extension("csharpls_definition")
 	end
 }
