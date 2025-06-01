@@ -1,1 +1,6 @@
-require("config")
+require("config.options")
+require("config.cmds")
+require("core.lsp")
+require("config.keymaps")
+require("core.lazy")
+vim.cmd("colorscheme cyberdream")

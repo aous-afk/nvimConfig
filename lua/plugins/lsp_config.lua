@@ -1,20 +1,20 @@
 return {
-	-- "neovim/nvim-lspconfig",
-	-- dependencies = {
+	"neovim/nvim-lspconfig",
+	dependencies = {
 		"stevearc/conform.nvim",
 		"williamboman/mason.nvim",
---		"williamboman/mason-lspconfig.nvim",
-	-- 	"hrsh7th/cmp-nvim-lsp",
-	-- 	"hrsh7th/cmp-buffer",
-	-- 	"hrsh7th/cmp-path",
-	-- 	"hrsh7th/cmp-cmdline",
-	-- 	"hrsh7th/nvim-cmp",
-		"L3MON4D3/LuaSnip",
-		-- "saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
---		"rshkarin/mason-nvim-lint",
+		"Decodetalkers/csharpls-extended-lsp.nvim",
+		--	"williamboman/mason-lspconfig.nvim",
+		-- 	"hrsh7th/cmp-nvim-lsp",
+		-- 	"hrsh7th/cmp-buffer",
+		-- 	"hrsh7th/cmp-path",
+		-- 	"hrsh7th/cmp-cmdline",
+		-- 	"hrsh7th/nvim-cmp",
+		-- "saadparwaiz1/cmp_luasnip",
+		--	"rshkarin/mason-nvim-lint",
 
-	-- },
+	},
 	config = function()
 		require('mason').setup({
 			ui = {
@@ -25,6 +25,20 @@ return {
 				},
 			},
 		})
+		local config = {
+			handlers = {
+				["textDocument/definition"] = require('csharpls_extended').handler,
+				["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+			},
+			cmd = { "csharp-ls" },
+			-- rest of your settings
+		}
+		require'lspconfig'.csharp_ls.setup(config)
+		require("csharpls_extended").buf_read_cmd_bind()
+		require("fidget").setup({})
+
+
+
 
 -- 		require('mason-lspconfig').setup({
 -- 			ensure_installed = {
@@ -57,16 +71,9 @@ return {
 		-- This is where you enable features that only work
 		-- if there is a language server active in the file
 
-		require('mason-nvim-lint').setup({
-			--ensure_installed = { 'ast-grep', 'prettier'},
-		})
-
-		require("fidget").setup({})
-
-		local luasnip = require('luasnip')
-		require('luasnip.loaders.from_vscode').lazy_load()
-		luasnip.config.setup {}
-
+-- 		require('mason-nvim-lint').setup({
+-- 			--ensure_installed = { 'ast-grep', 'prettier'},
+-- 		})
 
 -- 		local cmp = require('cmp')
 -- 
@@ -125,6 +132,6 @@ return {
 -- 				prefix = "",
 -- 			},
 -- 		})
- 	end
+	end
 
 }
