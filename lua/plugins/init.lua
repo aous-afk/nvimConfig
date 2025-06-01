@@ -35,7 +35,7 @@ return {
 					-- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
 
 					-- Example:
-					Comment = { fg = "#696969", bg = "NONE", italic = true },
+					Comment = { fg = "#4d4d4d", bg = "NONE", italic = true },
 
 					-- More examples can be found in `lua/cyberdream/extensions/*.lua`
 				},
@@ -44,7 +44,7 @@ return {
 				overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
 					-- Example:
 					return {
-						Comment = { fg = colors.green, bg = "NONE", italic = true },
+						Comment = { fg = "#575757", bg = "NONE", italic = true },
 						["@property"] = { fg = colors.magenta, bold = true },
 					}
 				end,
