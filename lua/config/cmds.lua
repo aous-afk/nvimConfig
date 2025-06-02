@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("<leader>la", vim.lsp.buf.code_action, "Code Action")
 		map("<leader>lr", vim.lsp.buf.rename, "Rename all references")
 		map("<leader>lf", '<cmd> lua vim.lsp.buf.format({ async = true }) <cr>', "Format")
-		map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
+		map("<leader>vs", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
 
 		local function client_supports_method(client, method, bufnr)
 			if vim.fn.has 'nvim-0.11' == 1 then
