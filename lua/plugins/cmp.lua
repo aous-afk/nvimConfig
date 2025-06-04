@@ -94,12 +94,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
-				{
-					name = 'path',
-					option = {
-						-- Options go into this table
-					},
-				},
+				{ name = 'path'	},
 			},
 			{
 				{ name = 'buffer' },

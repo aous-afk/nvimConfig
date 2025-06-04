@@ -18,6 +18,22 @@ return {
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-c>"] = actions.close,
+						["<C-s>"] = function(bufnr)
+							require("telescope.state").get_status(bufnr).picker.layout_config.scroll_speed = nil
+							return require("telescope.actions").preview_scrolling_down(bufnr)
+						end,
+						["<C-w>"] = function(bufnr)
+							require("telescope.state").get_status(bufnr).picker.layout_config.scroll_speed = nil
+							return require("telescope.actions").preview_scrolling_up(bufnr)
+						end,
+						["<C-e>"] = function(bufnr)
+							require("telescope.state").get_status(bufnr).picker.layout_config.scroll_speed = 1
+							return require("telescope.actions").preview_scrolling_down(bufnr)
+						end,
+						["<C-y>"] = function(bufnr)
+							require("telescope.state").get_status(bufnr).picker.layout_config.scroll_speed = 1
+							return require("telescope.actions").preview_scrolling_up(bufnr)
+						end,
 					},
 					n={},
 				}
