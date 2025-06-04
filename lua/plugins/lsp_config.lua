@@ -34,7 +34,8 @@ return {
 				{ 'gopls', condition = function() return vim.fn.executable('go') == 1  end },
 				'lua-language-server',
 				'vim-language-server',
-				'sonarlint-language-server'
+				'sonarlint-language-server',
+				'angular-language-server'
 			},
 
 			integrations = {

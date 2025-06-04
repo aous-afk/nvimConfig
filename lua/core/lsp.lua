@@ -1,6 +1,13 @@
 vim.lsp.enable({
---    "csharp-ls",
-    "lua_ls"
+	"angularls",
+	"lua_ls",
+	"vimls",
+	"bashls",
+	"eslint",
+	"gopls",
+	"superhtml",
+	"ts_ls",
+	"yamlls"
 })
 
 vim.diagnostic.config({
