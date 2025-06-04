@@ -1,12 +1,12 @@
 local function sln_name(msg)
-   ---@type string[]
-   local t={}
-   for str in string.gmatch(msg, '([^'..'/'..']+)') 
-    do
-    table.insert(t, str)
-    end
-   return t
-end
+	---@type string[]
+	local t={}
+	for str in string.gmatch(msg, '([^/]+)')
+		do
+			table.insert(t, str)
+		end
+		return t
+	end
 
 return {
 	"neovim/nvim-lspconfig",
@@ -166,10 +166,7 @@ return {
 				integration = {
 					["nvim-tree"] = {
 						enable = true,              -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-					},
-					["xcodebuild-nvim"] = {
-						enable = true,              -- Integrate with wojciech-kulik/xcodebuild.nvim (if installed)
-					},
+					}
 				},
 
 				-- Options related to logging

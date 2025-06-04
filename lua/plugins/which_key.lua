@@ -33,6 +33,9 @@ return{
 				{ "<leader>ww", "<cmd>w<cr>", desc = "Write" },
 				{ "<leader>wq", "<cmd>wq<cr>", desc = "Write and quit" },
 				{ "<leader>gi", "<cmd>Neogit<cr>", desc = "open Neogit" },
+				{ "<leader>gd", group = "Diffview" },
+				{ "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Open the Diffview" },
+				{ "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "Close the Diffview" },
 			}
 		})
 	end
