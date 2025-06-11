@@ -39,6 +39,10 @@ return{
 				{ "<leader>gd", group = "Diffview" },
 				{ "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Open the Diffview" },
 				{ "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "Close the Diffview" },
+			},
+			{
+				mode = {"n"},
+				{ "gs", group = "vim LSP" },
 			}
 		})
 	end
