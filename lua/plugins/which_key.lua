@@ -22,7 +22,7 @@ return{
 		wk.setup(opts)
 		wk.add({
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
-			{ "<leader>b", group = "buffers", expand = function()
+			{ "<leader>bu", group = "buffers", expand = function()
 				return require("which-key.extras").expand.buf()
 			end},
 			{ "<leader>e","<cmd>NvimTreeToggle<cr>",desc = "open tree"},
