@@ -75,3 +75,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "NeogitStatus",
+  callback = function()
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+  end,
+})
