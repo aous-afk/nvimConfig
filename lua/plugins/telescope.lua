@@ -51,5 +51,11 @@ return {
 		-- to resume the last search
 		-- vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 		require("telescope").load_extension("csharpls_definition")
+
+		-- init dotnet engine after telescope
+		require("features.dotnet.startup").setup({
+			build_cfg = "Debug",
+			icon = "",
+		})
 	end
 }

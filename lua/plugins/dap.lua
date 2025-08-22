@@ -44,16 +44,17 @@ return {
 				command = '/usr/local/bin/netcoredbg/netcoredbg',
 				args = {'--interpreter=vscode'}
 			}
-			dap.configurations.cs = {
-				{
-					type = "coreclr",
-					name = "launch - netcoredbg",
-					request = "launch",
-					program = function()
-						return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-					end,
-				},
-			}
+			-- dap.configurations.cs = {
+			-- 	{
+			-- 		type = "coreclr",
+			-- 		name = "launch - netcoredbg",
+			-- 		request = "launch",
+			-- 		program = function()
+			-- 			return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+			-- 		end,
+			-- 	},
+			-- }
+			require("plugins.dap_utils.dotnet").setup_adapter(dap)
 			-- GoLang
 			dap.adapters.go = {
 				type = 'executable';
