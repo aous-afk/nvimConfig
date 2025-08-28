@@ -26,3 +26,6 @@ vim.keymap.set('n', '<leader>ps', function()
 end, {desc = "Grep String"})
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {desc = "Help Tags"})
 vim.api.nvim_set_keymap('n', '<C-b>', ':lua vim.g.dotnet_build_project()<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<cr>", { desc = "[Telescope] - Search Keymaps"})
+
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })

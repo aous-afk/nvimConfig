@@ -7,7 +7,8 @@ vim.lsp.enable({
 	"gopls",
 	"superhtml",
 	"ts_ls",
-	"yamlls"
+	"yamlls",
+	"cssls"
 })
 
 vim.diagnostic.config({
