@@ -35,7 +35,8 @@ return { {
 				'lua-language-server',
 				'vim-language-server',
 				'sonarlint-language-server',
-				'angular-language-server'
+				'angular-language-server',
+				'shellcheck'
 			},
 
 			integrations = {
