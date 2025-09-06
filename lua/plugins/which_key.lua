@@ -35,6 +35,10 @@ return{
 				{ "<leader>wf", "<cmd>q!<cr>", desc = "Quit without save" },
 				{ "<leader>we", "<cmd>q<cr>", desc = "Quit" },
 				{ "<leader>wa", "<cmd>wqall<cr>", desc = "Quit and Save all" },
+
+				-- Git
+				{ "<leader>g", group = "Git" },
+				{ "<leader>gl", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 				{ "<leader>gi", "<cmd>Neogit<cr>", desc = "open Neogit" },
 				{ "<leader>gd", group = "Diffview" },
 				{ "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Open the Diffview" },
