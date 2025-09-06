@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
--- vim.cmd("colorscheme cyberdream")
+vim.cmd("colorscheme cyberdream")
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.opt.signcolumn = 'yes'
@@ -13,3 +13,9 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.winborder = "solid" -- https://neovim.io/doc/user/options.html#'winborder'
+
+--folds
+vim.opt.foldcolumn="1"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevelstart = 99

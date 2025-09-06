@@ -5,7 +5,9 @@ return {
 
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		{'nvim-telescope/telescope-ui-select.nvim' },
+		{"AckslD/nvim-neoclip.lua"}
 	},
 
 	config = function()
@@ -44,13 +46,33 @@ return {
 				}
 			},
 			extentions = {
-				fzf = {}
+				fzf = {},
+				['ui-select'] = {
+					require('telescope.themes').get_dropdown(),
+				},
+				neoclip ={},
+				-- undo = {
+				-- 	use_delta = true,
+				-- 	use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+				-- 	side_by_side = false,
+				-- 	vim_diff_opts = { ctxlen = vim.o.scrolloff },
+				-- 	entry_format = "state #$ID, $STAT, $TIME",
+				-- 	mappings = {
+				-- 		i = {
+				-- 			["<C-cr>"] = require("telescope-undo.actions").yank_additions,
+				-- 			["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+				-- 			["<cr>"] = require("telescope-undo.actions").restore,
+				-- 		},
+				-- 	},
+				-- },
 			}
 		})
 		require('telescope').load_extension('fzf')
+		require("telescope").load_extension("neoclip")
 		-- to resume the last search
 		-- vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 		require("telescope").load_extension("csharpls_definition")
+		require("telescope").load_extension("ui-select")
 
 		-- init dotnet engine after telescope
 		require("features.dotnet.startup").setup({
