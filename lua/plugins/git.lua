@@ -118,6 +118,66 @@ return {
 			}
 		end,
 	},
+	-- Diffview: pin a consistent layout everywhere
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+		config = function()
+			local actions = require("diffview.actions")
+
+			require("diffview").setup({
+				-- general toggles
+				diff_binaries = false,
+				enhanced_diff_hl = false,
+				use_icons = true,
+				show_help_hints = true,
+				watch_index = true,
+				view = {
+					default = {
+						layout = "diff2_horizontal",
+						disable_diagnostics = false,
+						winbar_info = false,
+					},
+					merge_tool = {
+						layout = "diff3_horizontal",
+						disable_diagnostics = true,
+						winbar_info = true,
+					},
+					file_history = {
+						layout = "diff2_vertical",
+						disable_diagnostics = false,
+						winbar_info = false,
+					},
+				},
+
+				file_panel = {
+					listing_style = "tree",
+					tree_options = {
+						flatten_dirs = true,
+						folder_statuses = "only_folded",
+					},
+					win_config = { position = "right", width = 35 },
+				},
+
+				file_history_panel = {
+					log_options = {
+						git = {
+							single_file = { diff_merges = "combined" },
+							multi_file  = { diff_merges = "first-parent" },
+						},
+					},
+				},
+
+				keymaps = {
+					view = {
+						{ "n", "<leader>gde", actions.toggle_files, { desc = "Toggle file panel" } },
+					},
+				},
+			})
+		end,
+	},
+
 	{
 		"kdheepak/lazygit.nvim",
 		lazy = true,
