@@ -15,11 +15,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- defaults:
 		-- https://neovim.io/doc/user/news-0.11.html#_defaults
+		local builtin = require('telescope.builtin')
+		map("gsd", function() builtin.lsp_definitions({ reuse_win = true }) end, "Goto Definition" )
+		map("gsr", "<cmd>Telescope lsp_references<cr>", "References")
+		map("gsi", function() builtin.lsp_implementations({ reuse_win = true }) end, "Goto Implementation")
+		map("gsy", function() builtin.lsp_type_definitions({ reuse_win = true }) end,"Goto T[y]pe Definition")
 
-		map('gsd', '<cmd> lua vim.lsp.buf.definition() <cr>', "definition")
-		map('gsi', '<cmd> lua vim.lsp.buf.implementation() <cr>', "Implementation")
-		map('gso', '<cmd> lua vim.lsp.buf.type_definition() <cr>', "Type Definition")
-		map('gsr', '<cmd> lua vim.lsp.buf.references() <cr>', "Refernces")
+
 		map("gsl", vim.diagnostic.open_float, "Open Diagnostic Float")
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
 		map("gss", vim.lsp.buf.signature_help, "Signature Documentation")
