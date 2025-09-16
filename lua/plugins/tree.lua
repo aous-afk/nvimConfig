@@ -34,6 +34,23 @@ return{
 				width = 30,
 				relativenumber = true,
 			},
+			on_attach = function(bufnr)
+				local api = require('nvim-tree.api')
+
+				api.config.mappings.default_on_attach(bufnr)
+				local function opts(desc)
+					return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
+
+				vim.keymap.set('n', 'A', function()
+					local node = api.tree.get_node_under_cursor()
+					local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
+					require("easy-dotnet").create_new_item(path)
+				end, opts('Create file from dotnet template'))
+				vim.keymap.set('n', 'h',  api.node.navigate.parent,  opts('Up'))
+				vim.keymap.set('n', 'v',  api.node.open.vertical,    opts('Open: Vertical Split'))
+				vim.keymap.set('n', 's',  api.node.open.horizontal,  opts('Open: Horizontal Split'))
+			end,
 			renderer = {
 				indent_markers = {
 					enable = true,
