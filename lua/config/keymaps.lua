@@ -48,3 +48,5 @@ vim.api.nvim_set_keymap('n', '<C-b>', '<cmd>DotnetBuild<CR>', { noremap = true, 
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.keymap.set("n", '<leader>vt', ':split +terminal<CR>', {desc = 'open terminal in split'})

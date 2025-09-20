@@ -143,6 +143,7 @@ return {
 		-- vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 		require("telescope").load_extension("csharpls_definition")
 		require("telescope").load_extension("ui-select")
+		require('telescope').load_extension('luasnip')
 
 
 		-- init dotnet engine after telescope

@@ -38,7 +38,8 @@ return {
 
 		local cmp = require('cmp')
 		local luasnip = require'luasnip'
-		cmp.setup({
+		cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
+ 		cmp.setup({
  			snippet = {
  				expand = function(args)
  					vim.snippet.expand(args.body)
@@ -83,6 +84,7 @@ return {
 			}),
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
+				{ name = 'easy-dotnet' },
 				{ name = 'luasnip' },
 				{ name = 'path'	},
 			},
@@ -123,5 +125,8 @@ return {
 				{ name = 'buffer' }
 			}
 		})
+
+		-- register easy-dotnet
+
 	end
 }

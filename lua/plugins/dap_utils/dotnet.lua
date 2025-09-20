@@ -12,6 +12,7 @@ function M.setup_adapter(dap)
 			end,
 			env = {
 				DOTNET_ENVIRONMENT = "Development",
+				ASPNETCORE_ENVIRONMENT = "Development"
 			},
 			repl_lang = "c_sharp"
 		},
