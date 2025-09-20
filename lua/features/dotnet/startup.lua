@@ -73,6 +73,7 @@ local function sh(cmd, args, cb)
 	args = args or {}
 	local parts = vim.list_extend({cmd}, args)
 	local command = table.concat(vim.tbl_map(shell_escape, parts), " ")
+	vim.cmd("wall")
 	vim.cmd("vsplit | term " .. command)
 	if cb then cb() end
 end
