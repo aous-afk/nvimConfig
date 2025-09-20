@@ -13,7 +13,13 @@ local action_state = require("telescope.actions.state")
 local themes = require("telescope.themes")
 
 local function proj_root()
-  local r = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+	local gitdir = vim.fn.finddir(".git", ".;")
+	local r
+	if gitdir ~= "" then
+		r = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+	else
+		r = uv.cwd()
+	end
   return (r and r ~= "") and r or vim.loop.cwd()
 end
 
