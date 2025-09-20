@@ -1,6 +1,6 @@
 require("config.cmds")
-require("core.lsp")
 require("core.lazy")
+require("core.lsp")
 require("config.options")
 require("features.dotnet.startup")
 -- vim.cmd("colorscheme cyberdream")

@@ -36,19 +36,9 @@ return {
 			TypeParameter = "󰅲",
 		}
 
-		local lspconfig_defaults = require('lspconfig').util.default_config
-		lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-			'force',
-			lspconfig_defaults.capabilities,
-			require('cmp_nvim_lsp').default_capabilities()
-		)
-		local capabilities = require('cmp_nvim_lsp').default_capabilities()
-		require('lspconfig').lua_ls.setup{
-			capabilities = capabilities
-		}
- 		local cmp = require('cmp')
+		local cmp = require('cmp')
 		local luasnip = require'luasnip'
- 		cmp.setup({
+		cmp.setup({
  			snippet = {
  				expand = function(args)
  					vim.snippet.expand(args.body)

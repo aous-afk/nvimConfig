@@ -8,7 +8,8 @@ vim.lsp.enable({
 	"superhtml",
 	"ts_ls",
 	"yamlls",
-	"cssls"
+	"cssls",
+	"csharp_ls"
 })
 
 vim.diagnostic.config({
