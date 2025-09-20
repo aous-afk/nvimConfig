@@ -44,16 +44,6 @@ return {
 				command = '/usr/local/bin/netcoredbg/netcoredbg',
 				args = {'--interpreter=vscode'}
 			}
-			-- dap.configurations.cs = {
-			-- 	{
-			-- 		type = "coreclr",
-			-- 		name = "launch - netcoredbg",
-			-- 		request = "launch",
-			-- 		program = function()
-			-- 			return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-			-- 		end,
-			-- 	},
-			-- }
 			require("plugins.dap_utils.dotnet").setup_adapter(dap)
 			-- GoLang
 			dap.adapters.go = {
@@ -85,7 +75,11 @@ return {
 
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+			"LiadOz/nvim-dap-repl-highlights",
+		},
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")

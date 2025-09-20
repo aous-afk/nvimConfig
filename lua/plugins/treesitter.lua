@@ -5,11 +5,14 @@ hi @lsp.type.extensionMethodName.cs guifg=LightYellow
 return {
     {
 	"nvim-treesitter/nvim-treesitter",
+	dependencies = {
+		"LiadOz/nvim-dap-repl-highlights",
+	},
 	build = ":TSUpdate",
 	config = function ()
+		require('nvim-dap-repl-highlights').setup()
 	    require('nvim-treesitter.configs').setup ({
-		-- A list of parser names, or "all" (the listed parsers MUST always be installed)
-		ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "typescript", "c_sharp","superhtml", "css", "json", "yaml" },
+		ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "typescript","javascript", "c_sharp","superhtml", "css", "json", "yaml", "dap_repl" },
 		auto_install = true,
 		highlight = {
 		    enable = true,
@@ -22,6 +25,9 @@ return {
 		    end,
 		    additional_vim_regex_highlighting = false,
 		},
+		indent = {
+			enable = true
+		}
 
 	    })
 
