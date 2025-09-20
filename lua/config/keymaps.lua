@@ -43,7 +43,7 @@ vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end, {desc = "Grep String"})
 
-vim.api.nvim_set_keymap('n', '<C-b>', ':lua vim.g.dotnet_build_project()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-b>', '<cmd>DotnetBuild<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 

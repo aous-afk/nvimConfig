@@ -59,20 +59,22 @@ function M.resolve_dll(csproj, build_cfg, tfm)
   return table.concat({ vim.fs.dirname(csproj), "bin", build_cfg or cfg.build_cfg, tfm, (cfg.run_time or "linux-x64"), asm..".dll" }, "/")
 end
 
-local function sh(cmd, args, cb)
-print({cmd, unpack(args or {})})
-print(unpack({cmd, unpack(args or {})}))
-  vim.system({cmd, unpack(args or {})}, { text=true }
-  , function(res)
-    if res.code ~= 0 then
-		print(res.stdout)
-		-- return vim.notify(res.stderr or (cmd.." failed"), vim.log.levels.ERROR)
-	end
-    if cb then
-		cb(res.stdout)
-	end
+local function shell_escape(arg)
+  -- quote only if it contains spaces or quotes
+  if arg:find("[ %c\"']") then
+    -- escape any embedded quotes
+    arg = arg:gsub('"', '\\"')
+    return '"' .. arg .. '"'
   end
-  )
+  return arg
+end
+
+local function sh(cmd, args, cb)
+	args = args or {}
+	local parts = vim.list_extend({cmd}, args)
+	local command = table.concat(vim.tbl_map(shell_escape, parts), " ")
+	vim.cmd("vsplit | term " .. command)
+	if cb then cb() end
 end
 
 function M.select_with_telescope()
@@ -176,10 +178,8 @@ function M.build()
 	if not p then
 		return M.select_with_telescope()
 	end
-	print(p)
-	sh("dotnet",{"build", p, "-r", cfg.run_time or "linux-x64", }, function ()
-		-- print("build")
-		-- vim.notify("build: "..p)
+	sh("dotnet",{"build", p, "-r", cfg.run_time or "li nux-x64", }, function ()
+		vim.notify("building: "..p)
 	end)
 end
 
