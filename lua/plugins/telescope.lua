@@ -44,6 +44,10 @@ return {
 						["<C-u>"] = false,
 						["<c-d>"] = actions.delete_buffer + actions.move_to_top,
 						["<M-p>"] = action_layout.toggle_preview,
+						["<C-q>"] = function(prompt_bufnr)
+							actions.smart_send_to_qflist(prompt_bufnr)
+							vim.cmd("copen") -- open quickfix window automatically
+						end,
 					},
 					n={
 						["<M-p>"] = action_layout.toggle_preview

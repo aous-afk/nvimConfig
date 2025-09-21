@@ -44,6 +44,10 @@ return{
 				{ "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "[c]lose the Diffview" },
 				{ "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", desc = "open file [h]istory" },
 				{ "<leader>gd%", "<cmd>DiffviewFileHistory %<cr>", desc = "open current file history" },
+				--easy-dotnet
+				{ "<leader>c", group = "Easy-Dotnet-C#" },
+				{ "<leader>cd", group = "diagnostics" },
+				{ "<leader>ce", group = "EF" },
 			},
 			{
 				mode = {"n"},
