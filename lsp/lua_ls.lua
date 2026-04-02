@@ -1,5 +1,4 @@
--- Lua
-vim.lsp.config.lua_ls = {
+return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
   root_markers = { ".luarc.json", ".git", vim.uv.cwd() },
