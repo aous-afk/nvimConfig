@@ -49,6 +49,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false	})
 
 		end
+
+		if client and client:supports_method('textDocument/signatureHelp') then
+			map("<C-;>" ,vim.lsp.buf.signature_help, "Open Signature Help")
+		end
+
 		if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
 			local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 

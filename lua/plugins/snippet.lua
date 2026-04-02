@@ -21,27 +21,35 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
 
-		vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+		vim.keymap.set({"i"}, "<C-K>",
+		function()
+			ls.expand() end,
+		{silent = true, desc = "LuaSnip: expand snippet" })
 		vim.keymap.set({"i", "s"}, "<C-L>",
 		function()
-				ls.jump(1)
+			ls.jump(1)
 		end,
-		{silent = true})
-		vim.keymap.set({"i", "s"}, "<C-J>", function()
-				ls.jump(-1)
+		{silent = true, desc = "LuaSnip: jump forward" })
+		vim.keymap.set({"i", "s"}, "<C-J>",
+		function()
+			ls.jump(-1) 
 		end,
-		{silent = true})
+		{silent = true, desc = "LuaSnip: jump backward" })
 
-		vim.keymap.set({"i", "s"}, "<C-s>", function()
+		vim.keymap.set({"i", "s"}, "<C-s>",
+		function()
 			if ls.choice_active() then
 				ls.change_choice(1)
 			end
-		end, {silent = true})
-		vim.keymap.set({"i", "s"}, "<C-w>", function()
+		end,
+		{silent = true, desc = "LuaSnip: next choice" })
+		vim.keymap.set({"i", "s"}, "<C-w>",
+		function()
 			if ls.choice_active() then
 				ls.change_choice(-1)
 			end
-		end, {silent = true})
+		end,
+		{silent = true, desc = "LuaSnip: previous choice" })
 		ls.config.set_config({
 			enable_autosnippets = true,
 		})

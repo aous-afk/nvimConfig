@@ -85,29 +85,38 @@ function M.select_with_telescope()
 	  return vim.notify("No .csproj found", vim.log.levels.WARN)
   end
 
-  pickers.new(themes.get_dropdown({ prompt_title = "Startup project" }), {
-    finder=finders.new_table(projects), sorter=conf.generic_sorter({}), previewer=conf.file_previewer({}),
-    attach_mappings=function(bufnr, map)
-      local function set(cb)
-		  local e = action_state.get_selected_entry();
-		  if not e then
-			  vim.notify("no selected entry", vim.log.levels.WARN)
-			  return
-		  end
-        M.save_selection(e[1]);
-		actions.close(bufnr);
-		if cb then
-			cb(e[1])
+	pickers.new({}, {
+		prompt_title = "Startup project",
+		layout_strategy = "horizontal",
+		layout_config = {
+			width = 0.95,
+			height = 0.85,
+			preview_width = 0.55,
+		},
+		finder=finders.new_table(projects),
+		sorter=conf.generic_sorter({}),
+		previewer=conf.file_previewer({}),
+		attach_mappings=function(bufnr, map)
+			local function set(cb)
+				local e = action_state.get_selected_entry();
+				if not e then
+					vim.notify("no selected entry", vim.log.levels.WARN)
+					return
+				end
+				M.save_selection(e[1]);
+				actions.close(bufnr);
+				if cb then
+					cb(e[1])
+				end
+			end
+			actions.select_default:replace(function() set() end)
+			map("i","<C-b>",function() set(function(pj) sh("dotnet",{"build",pj, "-r", cfg.run_time or "linux-x64"}) end) end)
+			map("i","<C-r>",function() set(function(pj) sh("dotnet",{"run",pj, cfg.run_time or "linux-x64", "--project"}) end) end)
+			map("n","<C-b>",function() set(function(pj) sh("dotnet",{"build", "-r", cfg.run_time or "linux-x64", pj}) end) end)
+			map("n","<C-r>",function() set(function(pj) sh("dotnet",{"run", "-r", cfg.run_time or "linux-x64", "--project",pj}) end) end)
+			return true
 		end
-	end
-      actions.select_default:replace(function() set() end)
-      map("i","<C-b>",function() set(function(pj) sh("dotnet",{"build",pj, "-r", cfg.run_time or "linux-x64"}) end) end)
-      map("i","<C-r>",function() set(function(pj) sh("dotnet",{"run",pj, cfg.run_time or "linux-x64", "--project"}) end) end)
-      map("n","<C-b>",function() set(function(pj) sh("dotnet",{"build", "-r", cfg.run_time or "linux-x64", pj}) end) end)
-      map("n","<C-r>",function() set(function(pj) sh("dotnet",{"run", "-r", cfg.run_time or "linux-x64", "--project",pj}) end) end)
-      return true
-    end
-  }):find()
+	}):find()
 end
 
 function M.save_selection(p)
