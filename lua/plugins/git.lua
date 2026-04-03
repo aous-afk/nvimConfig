@@ -4,7 +4,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",         -- required
 			"sindrets/diffview.nvim",        -- optional - Diff integration
-
 			-- Only one of these is needed.
 			"nvim-telescope/telescope.nvim", -- optional
 		},
@@ -187,8 +186,8 @@ return {
 			"LazyGitFilterCurrentFile",
 		},
 		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
+		-- dependencies = {
+		-- 	"nvim-lua/plenary.nvim",
+		-- },
 	}
 }

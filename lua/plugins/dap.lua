@@ -195,28 +195,51 @@ return {
 					-- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
 					-- Elements are the elements shown in the layout (in order).
 					-- Layouts are opened in order so that earlier layouts take priority in window sizing.
-					layouts = {
-						{
-							elements = {
-								-- Elements can be strings or table with id and size keys.
-								{ id = "scopes", size = 0.25 },
-								"breakpoints",
-								"stacks",
-								"watches",
-							},
-							size = 40, -- 40 columns
-							position = "left",
-						},
-						{
-							elements = {
-								"repl",
-								-- "console",
-							},
-							size = 0.25, -- 25% of total lines
-							position = "bottom",
-						},
+				layouts = {
+					{
+						elements = { {
+							id = "scopes",
+							size = 0.25
+						}, {
+								id = "breakpoints",
+								size = 0.25
+							}, {
+								id = "stacks",
+								size = 0.25
+							}, {
+								id = "watches",
+								size = 0.25
+							} },
+						position = "left",
+						size = 40
 					},
-					controls = {
+					-- 	{
+					-- 		elements = {
+					-- 			-- Elements can be strings or table with id and size keys.
+					-- 			{ id = "scopes", size = 0.25 },
+					-- 			"breakpoints",
+					-- 			"stacks",
+					-- 			"watches",
+					-- 		},
+					-- 		size = 40, -- 40 columns
+					-- 		position = "left",
+					-- },
+					{
+						elements = {
+							{
+								id = "repl",
+								-- size = 0.5
+							},
+							-- {
+							-- 	id = "console",
+							-- 	size = 0.5
+							-- }
+						},
+						position = "bottom",
+						size = 10
+					}
+				},
+				controls = {
 						-- Requires Neovim nightly (or 0.8 when released)
 						enabled = true,
 						-- Display controls in this element

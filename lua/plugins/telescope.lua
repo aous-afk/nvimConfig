@@ -80,7 +80,7 @@ return {
           themes.get_dropdown({
             previewer = false,
             prompt_title = "Select",
-			      layout_config = { height = 10 },
+			      layout_config = { height = 0.5, width = 0.5 },
           }),
           specific_opts = {
             codeactions = themes.get_cursor({
