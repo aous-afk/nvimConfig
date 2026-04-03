@@ -1,4 +1,4 @@
-return{
+return {
 	"mfussenegger/nvim-lint",
 	dependencies = {
 	},
@@ -13,7 +13,9 @@ return{
 		lint.linters_by_ft = {
 			typescript = { "eslint_d" },
 			dockerfile = { "hadolint" },
-			sh = {"shellcheck"}
+			sh = { "shellcheck" },
+			c = { "clangtidy" },
+			-- cpp = { "clangtidy" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

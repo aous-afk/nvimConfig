@@ -7,7 +7,8 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		{'nvim-telescope/telescope-ui-select.nvim' },
-		{"AckslD/nvim-neoclip.lua"}
+		{"AckslD/nvim-neoclip.lua"},
+		{"nvim-telescope/telescope-dap.nvim"}
 	},
 
 	config = function()
@@ -148,6 +149,7 @@ return {
 		require("telescope").load_extension("csharpls_definition")
 		require("telescope").load_extension("ui-select")
 		require('telescope').load_extension('luasnip')
+		require('telescope').load_extension('dap')
 
 
 		-- init dotnet engine after telescope
