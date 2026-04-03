@@ -9,7 +9,8 @@ vim.lsp.enable({
 	"ts_ls",
 	"yamlls",
 	"cssls",
-	"csharp_ls"
+	"csharp_ls",
+	"clangd",
 })
 
 vim.diagnostic.config({
