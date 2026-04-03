@@ -2,6 +2,7 @@ return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons'},
 	config = function ()
+		local job_indicator = { require("easy-dotnet.ui-modules.jobs").lualine }
 		require('lualine').setup {
 			options = {
 				icons_enabled = true,
@@ -36,20 +37,20 @@ return {
 				}
 			},
 			sections = {
-				lualine_a = {'mode'},
+				lualine_a = {'mode', job_indicator},
 				lualine_b = {'branch', 'diff', 'diagnostics'},
 				lualine_c = {'filename'},
 				lualine_x = {'encoding', 'fileformat', 'filetype'},
 				lualine_y = {'progress'},
-				lualine_z = {'location'}
+				lualine_z = {'location', 'lsp_status'}
 			},
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
 				lualine_c = {'filename'},
-				lualine_x = {'location'},
+				lualine_x = {'filetype'},
 				lualine_y = {},
-				lualine_z = {}
+				lualine_z = {'location'}
 			},
 			tabline = {},
 			winbar = {},

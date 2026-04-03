@@ -95,7 +95,7 @@ function M.select_with_telescope()
 		},
 		finder=finders.new_table(projects),
 		sorter=conf.generic_sorter({}),
-		previewer=conf.file_previewer({}),
+		-- previewer=conf.file_previewer({}),
 		attach_mappings=function(bufnr, map)
 			local function set(cb)
 				local e = action_state.get_selected_entry();
@@ -188,7 +188,7 @@ function M.build()
 	if not p then
 		return M.select_with_telescope()
 	end
-	sh("dotnet",{"build", p, "-r", cfg.run_time or "li nux-x64", }, function ()
+	sh("dotnet",{"build", p, "-r", cfg.run_time or "linux-x64", }, function ()
 		vim.notify("building: "..p)
 	end)
 end
@@ -218,6 +218,19 @@ function M.setup(o)
   vim.api.nvim_create_user_command("DotnetBuild", M.build, {})
   vim.api.nvim_create_user_command("DotnetRun", M.run, {})
   vim.api.nvim_create_user_command("DotnetDebug", M.debug, {})
+end
+
+function M.debug_cwd()
+  local csproj = state.project or M.load_selection()
+
+  if csproj and csproj ~= "" then
+    local dir = vim.fs.dirname(csproj)
+    if dir and vim.fn.isdirectory(dir) == 1 then
+      return dir
+    end
+  end
+
+  return vim.fn.getcwd()
 end
 
 return M
