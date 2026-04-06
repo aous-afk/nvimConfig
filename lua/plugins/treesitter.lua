@@ -3,10 +3,15 @@ hi @lsp.type.variable.cs guifg=LightBlue
 hi @lsp.type.extensionMethodName.cs guifg=LightYellow
 ]]
 return {
+	-- {
+	--        "nvim-treesitter/nvim-treesitter-textobjects",
+	--        lazy = false,  -- force it to load at startup
+	--    },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"LiadOz/nvim-dap-repl-highlights",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
 		config = function ()
@@ -27,17 +32,59 @@ return {
 				},
 				indent = {
 					enable = true
-				}
+				},
+				-- textobjects = {
+				-- 	select = {
+				-- 		enable = true,
+				-- 		lookahead = true, -- jump forward to next textobj automatically
+				-- 		keymaps = {
+				-- 			["af"] = "@function.outer", -- select whole method
+				-- 			["if"] = "@function.inner", -- select method body only
+				-- 			["ac"] = "@class.outer",    -- select whole class
+				-- 			["ic"] = "@class.inner",    -- select class body
+				-- 			["aa"] = "@parameter.outer",-- select parameter incl. comma
+				-- 			["ia"] = "@parameter.inner",-- select parameter only
+				-- 		},
+				-- 	},
+				-- 	move = {
+				-- 		enable = true,
+				-- 		set_jumps = true, -- adds to jumplist, so <C-o> goes back
+				-- 		goto_next_start = {
+				-- 			["]m"] = "@function.outer", -- next method
+				-- 			["]c"] = "@class.outer",    -- next class
+				-- 		},
+				-- 		goto_prev_start = {
+				-- 			["[m"] = "@function.outer", -- prev method
+				-- 			["[c"] = "@class.outer",    -- prev class
+				-- 		},
+				-- 	},
+				-- },
 
 			})
+			require('nvim-treesitter-textobjects').setup()
+			local sel = require('nvim-treesitter-textobjects.select')
 
+			local maps = {
+				{ 'af', '@function.outer', 'Select outer function' },
+				{ 'if', '@function.inner', 'Select inner function' },
+				{ 'ac', '@class.outer',    'Select outer class' },
+				{ 'ic', '@class.inner',    'Select inner class' },
+				{ 'aa', '@parameter.outer','Select outer parameter' },
+				{ 'ia', '@parameter.inner','Select inner parameter' },
+			}
+
+			for _, map in ipairs(maps) do
+				vim.keymap.set({ 'x', 'o' }, map[1], function()
+					sel.select_textobject(map[2], 'textobjects')
+				end, { desc = map[3] })
+			end
 		end
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		branch = "main",
-		init = function()
-			vim.g.no_plugin_maps = true
-		end,
-	}
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter-textobjects",
+	-- 	-- branch = "main",
+	-- 	-- init = function()
+	-- 	-- 	vim.g.no_plugin_maps = true
+	-- 	-- end,
+	-- }
 }
