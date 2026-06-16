@@ -20,6 +20,9 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = { "smart" },
+				preview = {
+					treesitter = false,
+				},
 				mappings = {
 					i={
 						["<C-j>"] = actions.move_selection_next,

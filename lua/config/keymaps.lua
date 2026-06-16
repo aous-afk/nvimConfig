@@ -56,9 +56,6 @@ vim.keymap.set("n", '<leader>vt', ':split +terminal<CR>', {desc = 'open terminal
 local dotnet = require("easy-dotnet")
 local diagnostics = require("easy-dotnet.actions.diagnostics")
 
--- Project view
-vim.keymap.set("n", "<leader>cv", dotnet.project_view, { desc = "Project view" })
-
 -- Diagnostics
 vim.keymap.set("n", "<leader>cda", function()
   diagnostics.get_workspace_diagnostics()
